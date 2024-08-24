@@ -37,5 +37,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RegionsSeeder::class,
         ]);
+
+        $this->call([
+            AgamaSeeder::class,
+        ]);
     }
 }

@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'registrasi_id'
     ];
 
     /**
@@ -44,5 +45,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function regmahasiswa()
+    {
+        return $this->hasMany(RegMahasiswa::class, 'id', 'registrasi_id');
     }
 }

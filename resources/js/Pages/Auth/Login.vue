@@ -71,10 +71,10 @@ const submit = () => {
                     Not registered?
                     </Link>
 
-                    <Link v-if="canResetPassword" :href="route('password.request')"
+                    <a v-if="canResetPassword" href="http://daftar.penerimaan.pnj.ac.id/Forgot.php" target="_blank"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Forgot your password?
-                    </Link>
+                        Forgot your password?
+                    </a>
                 </div>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

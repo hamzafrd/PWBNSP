@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Regions extends Model
 {
-    use HasFactory;
+    protected $table = 'regions';
+    protected $guarded = [''];
 }

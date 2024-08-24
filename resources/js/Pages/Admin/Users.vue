@@ -1,34 +1,56 @@
 <template>
-    <div class="p-6 bg-white shadow rounded-lg">
-        <h1 class="text-2xl font-bold mb-4">Manage Users</h1>
-        <table class="min-w-full bg-white">
-            <thead>
-                <tr>
-                    <th class="py-2">Name</th>
-                    <th class="py-2">Email</th>
-                    <th class="py-2">Role</th>
-                    <th class="py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="user in users" :key="user.id" class="border-t">
-                    <td class="py-2">{{ user.name }}</td>
-                    <td class="py-2">{{ user.email }}</td>
-                    <td class="py-2">{{ user.role }}</td>
-                    <td class="py-2">
-                        <Link class="text-blue-500 hover:text-blue-700" :href="route('admin.users.edit', user.id)">
-                        Edit
-                        </Link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <AuthenticatedLayout>
+
+        <div class="p-6 bg-white shadow rounded-lg">
+            <div class="flex items-center justify-between gap-2">
+                <h1 class="text-2xl font-bold">Manage Users Mahasiswa</h1>
+
+            </div>
+            <table class="min-w-full bg-white" id="data-table">
+                <thead>
+                    <tr>
+                        <th class="py-2">Name</th>
+                        <th class="py-2">Email</th>
+                        <th class="py-2">Role</th>
+                        <th class="py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="user in users" :key="user.id" class="border-t">
+                        <td class="py-2">{{ user.name }}</td>
+                        <td class="py-2">{{ user.email }}</td>
+                        <td class="py-2">{{ user.role }}</td>
+                        <td class="py-2 flex items-center gap-3">
+                            <Link class="text-blue-500 hover:text-blue-700 bg-blue-200 rounded-md px-2"
+                                :href="route('admin.users.edit', user.id)">
+                            Edit Role
+                            </Link>
+                            <a class="text-red-500 hover:text-red-700 bg-red-200 rounded-md px-2" href="#"
+                                @click="() => handleHapusUser(user.id)">
+                                Hapus
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Link, useForm } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
 
+const form = useForm({
+    user_id: null
+})
+
+const handleHapusUser = (id) => {
+    form.user_id = id;
+    form.delete(route('admin.users.delete', form.user_id))
+}
 const props = defineProps({
     users: {
         type: Array,
@@ -36,4 +58,15 @@ const props = defineProps({
     }
 })
 
+onMounted(() => {
+    $('#data-table').DataTable();
+});
 </script>
+
+<style scoped>
+table,
+td,
+th {
+    text-align: left;
+}
+</style>
