@@ -1,66 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PWBNS - Pengembang Web BNSP untuk sertifikat BNPS Pengembang Web
+<img width="955" alt="Halaman home" src="https://github.com/user-attachments/assets/86c011a8-b9a4-4dfc-8a6b-1328b7e8f384">
+Aplikasi Pendaftaran dan Seleksi Mahasiswa Baru Untuk Sertifikat Pengembang Web BNSP yang diadakan di Politeknik Negeri Jakarta
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## **Fitur**
 
-## About Laravel
+- **Halaman Home**: Informasi dasar tentang aplikasi.
+- **Halaman Admin**: Mengelola data, Memverifikasi Dokumen, dan Mengelola Akun Pengguna.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## **Beberapa Screenshot Aplikasi**
+![verifkasi dokumen](https://github.com/user-attachments/assets/394c0502-6b3b-427e-8e4b-3a79cc5838ad)
+![halamam peninjuan dokumen](https://github.com/user-attachments/assets/eb0b874d-849f-4cd7-9461-4aceabe5227a)
+![halaman daftar-form mahasiswa](https://github.com/user-attachments/assets/f221519e-76f2-444d-8ab7-0e720ac9d7ca)
+![halaman seleksi](https://github.com/user-attachments/assets/b144dbd4-80b8-4169-a1e9-6f09f0ae8255)
+## **Instalasi**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### **Prasyarat**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sebelum menginstal aplikasi ini, pastikan Anda sudah menginstal beberapa perangkat lunak berikut:
 
-## Learning Laravel
+- PHP >= 8.3
+- Composer
+- Node.js & NPM
+- MySQL atau DBMS lain yang didukung Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **Langkah-langkah Instalasi**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clone Repository**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   ```bash
+   git clone https://github.com/hamzafrd/spk-smarter-spa.git
+   cd spk-smarter-spa-main
+   ```
 
-## Laravel Sponsors
+2. **Salin File Konfigurasi**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```bash
+   cp .env.example .env
+   ```
 
-### Premium Partners
+3. **Instal Dependensi**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   - Instal dependensi PHP menggunakan Composer:
+     ```bash
+     composer install
+     ```
+   - Instal dependensi frontend menggunakan NPM:
+     ```bash
+     npm install
+     ```
 
-## Contributing
+4. **Generate Key Aplikasi**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   php artisan key:generate
+   ```
 
-## Code of Conduct
+5. **Konfigurasi Database**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   - Buka file `.env` dan sesuaikan konfigurasi database Anda:
+     ```plaintext
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=pwbnsp_laravel
+     DB_USERNAME=username_anda
+     DB_PASSWORD=password_anda
+     ```
 
-## Security Vulnerabilities
+6. **Migrasi dan Seed Database**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## License
+7. **Kompilasi Asset Frontend**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   npm run dev
+   ```
+
+8. **Jalankan Aplikasi**
+
+   ```bash
+   php artisan serve
+   ```
+
+   Aplikasi akan berjalan di `http://localhost:8000`.
+
+## **Penggunaan**
+
+- **Halaman Home**: Akses halaman home di `http://localhost:8000` untuk melihat informasi umum.
+- **Halaman Admin**: Akses halaman admin di `http://localhost:8000/dashboard` setelah login.
+
+## **Lisensi**
+
+Aplikasi ini dilisensikan di bawah [MIT License](LICENSE).
