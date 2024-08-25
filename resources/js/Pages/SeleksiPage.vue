@@ -117,20 +117,18 @@ onMounted(() => {
                 <table id="data-table">
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>Ranking</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th>Ranking</th>
                             <th>NEM</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-if="props.listForm.length" v-for="(form, index) in props.listForm" :key="index">
 
-                            <td>{{ form.id }}</td>
+                            <td>{{ index + 1 }}</td>
                             <td>{{ form.nama_lengkap }}</td>
                             <td>{{ form.email }}</td>
-                            <td>{{ index + 1 }}</td>
                             <td>{{ form.nem }}</td>
                         </tr>
                     </tbody>
