@@ -15,7 +15,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dumping data for table pwbnsp_laravel.agama: ~6 rows (approximately)
-REPLACE INTO `agama` (`id`, `nama`) VALUES
+INSERT INTO `agama` (`id`, `nama`) VALUES
 	(1, 'islam'),
 	(2, 'katolik'),
 	(3, 'kristen'),
@@ -24,7 +24,7 @@ REPLACE INTO `agama` (`id`, `nama`) VALUES
 	(6, 'lainnya');
 
 -- Dumping data for table pwbnsp_laravel.cache: ~8 rows (approximately)
-REPLACE INTO `cache` (`key`, `value`, `expiration`) VALUES
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 	('guest@bnsp.pnj.sertifikat.id|127.0.0.1', 'i:1;', 1724538154),
 	('guest@bnsp.pnj.sertifikat.id|127.0.0.1:timer', 'i:1724538154;', 1724538154),
 	('ssd@mail.com|127.0.0.1', 'i:1;', 1724529476),
@@ -43,7 +43,7 @@ REPLACE INTO `cache` (`key`, `value`, `expiration`) VALUES
 -- Dumping data for table pwbnsp_laravel.job_batches: ~0 rows (approximately)
 
 -- Dumping data for table pwbnsp_laravel.migrations: ~8 rows (approximately)
-REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '0001_01_01_000000_create_users_table', 1),
 	(2, '0001_01_01_000001_create_cache_table', 1),
 	(3, '0001_01_01_000002_create_jobs_table', 1),
@@ -58,7 +58,7 @@ REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Dumping data for table pwbnsp_laravel.password_reset_tokens: ~0 rows (approximately)
 
 -- Dumping data for table pwbnsp_laravel.regions: ~480 rows (approximately)
-REPLACE INTO `regions` (`id`, `provinsi`, `kota_kabupaten`, `created_at`, `updated_at`) VALUES
+INSERT INTO `regions` (`id`, `provinsi`, `kota_kabupaten`, `created_at`, `updated_at`) VALUES
 	(1, 'NAD Aceh', 'Kabupaten Aceh Barat', NULL, NULL),
 	(2, 'NAD Aceh', 'Kabupaten Aceh Barat Daya', NULL, NULL),
 	(3, 'NAD Aceh', 'Kabupaten Aceh Besar', NULL, NULL),
@@ -540,20 +540,20 @@ REPLACE INTO `regions` (`id`, `provinsi`, `kota_kabupaten`, `created_at`, `updat
 	(479, 'Papua', 'Kabupaten Yapen', NULL, NULL),
 	(480, 'Papua', 'Kota Jayapura', NULL, NULL);
 
--- Dumping data for table pwbnsp_laravel.registrasi_mahasiswa: ~4 rows (approximately)
-REPLACE INTO `registrasi_mahasiswa` (`id`, `status`, `region_pribadi_id`, `region_tempat_lahir_id`, `kecamatan`, `nama_lengkap`, `alamat_ktp`, `alamat_lengkap`, `nomor_telepon`, `nomor_handphone`, `email`, `kewarganegaraan`, `negara_wna`, `tanggal_lahir`, `tempat_lahir`, `jenis_kelamin`, `status_menikah`, `agama`, `nem`, `created_at`, `updated_at`) VALUES
+-- Dumping data for table pwbnsp_laravel.registrasi_mahasiswa: ~5 rows (approximately)
+INSERT INTO `registrasi_mahasiswa` (`id`, `status`, `region_pribadi_id`, `region_tempat_lahir_id`, `kecamatan`, `nama_lengkap`, `alamat_ktp`, `alamat_lengkap`, `nomor_telepon`, `nomor_handphone`, `email`, `kewarganegaraan`, `negara_wna`, `tanggal_lahir`, `tempat_lahir`, `jenis_kelamin`, `status_menikah`, `agama`, `nem`, `created_at`, `updated_at`) VALUES
 	(1, 'user', 26, 24, 'Manggis', 'guest', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', '85155113365', '85155113365', 'guest@mail.com', 'WNI Keturunan', NULL, '2024-08-15', 'Jakarta', 'pria', 'belum menikah', 'islam', '4.75', '2024-08-24 13:09:44', '2024-08-24 17:03:05'),
 	(2, 'user', 1, NULL, 'Bojong Sari', 'HAMZA FIRDAUS', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', '85155113365', '85155113365', 'guest2@mail.com', 'WNA', 'Indonesia', '2024-08-15', 'Indonesia', 'pria', 'menikah', 'islam', '3.5', '2024-08-24 14:13:45', '2024-08-24 17:15:58'),
 	(4, 'accepted', 24, 76, 'Bojong Sari', 'HAMZA FIRDAUS', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', '85155113365', '85155113365', 'test@mail.com', 'WNI Asli', NULL, '2024-08-08', 'Indonesia', 'pria', 'belum menikah', 'islam', '5', '2024-08-24 16:46:55', '2024-08-24 17:31:26'),
 	(5, 'pending', 24, 24, 'Cimanggis', 'guest', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', '85155113365', '85155113365', 'guest@mail.com', 'WNI Keturunan', NULL, '2024-08-09', 'Indonesia', 'pria', 'menikah', 'katolik', '40', '2024-08-24 17:40:31', '2024-08-24 17:40:31'),
 	(6, 'pending', 24, 24, 'Cimanggis', 'guest', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', 'Areman Residance, Jl. H. A. Mutholib, Tugu, Kec. Cimanggis, Kota Depok, Jawa Barat 16451', '85155113365', '85155113365', 'guest@mail.com', 'WNI Keturunan', NULL, '2024-08-02', 'Indonesia', 'pria', 'belum menikah', 'islam', '40', '2024-08-24 17:43:02', '2024-08-24 17:43:02');
 
--- Dumping data for table pwbnsp_laravel.sessions: ~0 rows (approximately)
-REPLACE INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+-- Dumping data for table pwbnsp_laravel.sessions: ~1 rows (approximately)
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 	('fM0voZ5HVICbDlKtKUkaj0Th16brG3KqCrLhLCWN', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiR0twcVY2cHFvS2JqNzhMdUJNcDFrSTZnb2R2aVQxSTY3cDZIYjFpMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTU7fQ==', 1724547567);
 
 -- Dumping data for table pwbnsp_laravel.users: ~9 rows (approximately)
-REPLACE INTO `users` (`id`, `registrasi_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
+INSERT INTO `users` (`id`, `registrasi_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
 	(1, NULL, 'Miss Marjory Bartoletti Sr.', 'erdman.humberto@example.org', '2024-08-24 12:56:28', '$2y$12$Q4gKLfdK8/xvztK6Tq3KvOekY2uhRa59ye8p9m9dtClbTs/q0F5LO', 'bY2IWRBC7b', '2024-08-24 12:56:28', '2024-08-24 12:56:28', 'user'),
 	(2, NULL, 'Miss Verla Vandervort V', 'ohara.lolita@example.org', '2024-08-24 12:56:28', '$2y$12$Q4gKLfdK8/xvztK6Tq3KvOekY2uhRa59ye8p9m9dtClbTs/q0F5LO', 'oGHBM2iALP', '2024-08-24 12:56:28', '2024-08-24 12:56:28', 'user'),
 	(5, NULL, 'Ms. Sydnie Rogahn', 'mklein@example.com', '2024-08-24 12:56:28', '$2y$12$Q4gKLfdK8/xvztK6Tq3KvOekY2uhRa59ye8p9m9dtClbTs/q0F5LO', 'Sf2FwEBrVX', '2024-08-24 12:56:28', '2024-08-24 12:56:28', 'user'),
