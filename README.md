@@ -28,8 +28,8 @@ Sebelum menginstal aplikasi ini, pastikan Anda sudah menginstal beberapa perangk
 1. **Clone Repository**
 
    ```bash
-   git clone https://github.com/hamzafrd/spk-smarter-spa.git
-   cd spk-smarter-spa-main
+   git clone https://github.com/hamzafrd/PWBNSP.git
+   cd PWBNSP
    ```
 
 2. **Salin File Konfigurasi**
