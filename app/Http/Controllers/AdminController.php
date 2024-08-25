@@ -151,4 +151,9 @@ class AdminController extends Controller
         $user->where('id', $id)->delete();
         return redirect()->route('admin.users')->with('success', 'User deleted successfully');
     }
+    public function deleteDokumen(RegMahasiswa $rh, $id)
+    {
+        $rh->where('id', $id)->delete();
+        return redirect()->route('admin.index')->with('success', 'User deleted successfully');
+    }
 }

@@ -34,6 +34,7 @@ const props = defineProps({
     },
     provinsi: String,
     provinsiLahir: String,
+    errors: Object,
 })
 
 const selectedProvinsi = ref(props.provinsi);
@@ -78,8 +79,6 @@ const form = useForm({
     agama: props.dokumen.agama,
     nem: props.dokumen.nem,
 });
-
-console.log(form);
 
 
 // Fetch the list of provinces on component mount
@@ -165,14 +164,39 @@ const validateForm = () => {
 
 const submitForm = () => {
     validateForm()
-    form.post(route('admin.dokumen.edit', form.id), {
-        onSuccess: (response) => {
-            console.log(response);
-        },
-        onError: (err) => {
-            console.log(err);
-        },
+    Swal.fire({
+        title: "Apa Anda Yakin ?",
+        text: "Pastikan Data Sudah Benar.",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.post(route('admin.dokumen.edit', form.id), {
+                onSuccess: () => {
+                    Swal.fire({
+                        title: "Updated.",
+                        text: "Dokumen Berhasil di update.",
+                        icon: "success"
+                    });
+                },
+                onError: (err) => {
+                    for (const [key, message] of Object.entries(props.errors)) {
+                        // Use SweetAlert to display each error message
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: `Gagal: ${message}`,
+                            icon: "error"
+                        });
+                    }
+                },
+            });
+
+        }
     });
+
 };
 
 // Watch for changes in the selected province and fetch the corresponding cities
@@ -192,9 +216,9 @@ watch(selectedProvinsiLahir, (newProvinsiId) => {
     }
 });
 
-watch(form, (newProvinsiId) => {
-    console.log(newProvinsiId.errors)
-});
+// watch(form, (newProvinsiId) => {
+//     console.log(newProvinsiId.errors)
+// });
 
 
 onMounted(() => {

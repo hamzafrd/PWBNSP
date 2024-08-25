@@ -44,12 +44,39 @@ import { Link, useForm } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 
 const form = useForm({
-    user_id: null
 })
 
 const handleHapusUser = (id) => {
-    form.user_id = id;
-    form.delete(route('admin.users.delete', form.user_id))
+    Swal.fire({
+        title: "Are you sure ?",
+        text: "Data akan hilang selamanya.",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Hapus"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.delete(route('admin.users.delete', id), {
+                onSuccess: () => {
+                    Swal.fire({
+                        title: "Berhasil !",
+                        text: "Akun Berhasil Dihapus.",
+                        icon: "success"
+                    });
+                },
+                onError: () => {
+                    for (const [key, message] of Object.entries(props.errors)) {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: `Gagal: ${message}`,
+                            icon: "error"
+                        });
+                    }
+                },
+            });
+        }
+    });
 }
 const props = defineProps({
     users: {

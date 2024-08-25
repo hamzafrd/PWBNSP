@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 import { onMounted } from 'vue';
 
 const props = defineProps({
@@ -30,9 +31,64 @@ const props = defineProps({
     role: String,
 })
 
+const form = useForm({})
 onMounted(() => {
-    $('#data-table').DataTable();
+    $('#data-table').DataTable({
+        responsive: true
+    });
 });
+
+const printPdf = (dokumenId, nama_lengkap) => {
+    axios({
+        url: route('pdf.generate', dokumenId), // Replace with your route
+        method: 'post',             // POST or GET depending on your route method
+        responseType: 'blob',       // Important: this tells Axios to expect a binary file
+    })
+        .then((response) => {
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `bukti-pendaftaran-${dokumenId}-${nama_lengkap}-${new Date().toLocaleDateString()}.pdf`); // Name of the file
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+        .catch((error) => {
+            console.error('There was an error downloading the PDF:', error);
+        });
+};
+
+const handleDelete = (id) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Data Akan Hilang Selamanya !",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Hapus!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.delete(route('admin.dokumen.delete', id), {
+                onSuccess: () => {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                },
+                onError: (err) => {
+                    Swal.fire({
+                        title: "Gagal !",
+                        text: "Gagal : " + err,
+                        icon: "error"
+                    });
+                }
+            })
+        }
+    });
+}
 </script>
 
 <template>
@@ -49,8 +105,8 @@ onMounted(() => {
                         <th>Nama Lengkap</th>
                         <th>Kewarganegaraan</th>
                         <th>NEM</th>
-                        <th>Nomor Telepon</th>
-                        <th>Nomor HP</th>
+                        <!-- <th>Nomor Telepon</th>
+                        <th>Nomor HP</th> -->
                         <th>Email</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -61,8 +117,8 @@ onMounted(() => {
                         <td>{{ form.nama_lengkap }}</td>
                         <td>{{ form.kewarganegaraan }}</td>
                         <td>{{ form.nem }}</td>
-                        <td>{{ form.nomor_telepon }}</td>
-                        <td>{{ form.nomor_handphone }}</td>
+                        <!-- <td>{{ form.nomor_telepon }}</td>
+                        <td>{{ form.nomor_handphone }}</td> -->
                         <td>{{ form.email }}</td>
 
                         <td>
@@ -76,7 +132,7 @@ onMounted(() => {
                             Tinjau Dokumen
                             </Link>
 
-                            <Link v-if="
+                            <Link href="#" v-if="
                                 form.status == 'accepted' &&
                                 props.role == 'admin'" type="button" :href="route('admin.users.show', form.id)"
                                 class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
@@ -84,18 +140,18 @@ onMounted(() => {
                             </Link>
 
 
-                            <Link v-else-if="form.status != 'user'" type="button"
-                                :href="route('admin.dokumen.delete', form.id)"
+                            <Link href="#" v-else-if="form.status != 'user'" type="button"
+                                @click="() => handleDelete(form.id)"
                                 class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                             Delete
                             </Link>
 
-                            <Link type="button" v-if="
+                            <a type="button" v-if="
                                 form.status == 'accepted' || form.status == 'user'
-                            " :href="route('admin.dokumen.print', form.id)"
+                            " href="#" @click="() => printPdf(form.id, form.nama_lengkap)"
                                 class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800">
-                            Print Bukti
-                            </Link>
+                                Print Bukti
+                            </a>
                         </td>
                     </tr>
                 </tbody>

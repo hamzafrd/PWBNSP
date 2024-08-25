@@ -157,12 +157,12 @@ class MahasiswaController extends Controller
     public function updateUser(Request $request, User $user)
     {
         $user->update($request->only('role'));
-        return redirect()->route('admin.users')->with('success', 'User role updated successfully');
+        return redirect()->route('admin.index')->with('success', 'User role updated successfully');
     }
 
     public function deleteUser(User $user, $id)
     {
         $user->where('id', $id)->delete();
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.index')->with('success', 'User deleted successfully');
     }
 }

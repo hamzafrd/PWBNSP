@@ -29,7 +29,8 @@ const props = defineProps({
             status: '',
             nem: '',
         }
-    }
+    },
+    errors: Object
 })
 
 const form = useForm({
@@ -41,9 +42,38 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    Swal.fire({
+        title: "Are you sure ?",
+        text: "Pastikan data sesuai.",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Ya"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.post(route('register'), {
+                onSuccess: () => {
+                    Swal.fire({
+                        title: "Berhasil !",
+                        text: "Akun Berhasil Dibuat.",
+                        icon: "success"
+                    });
+                },
+                onError: () => {
+                    for (const [key, message] of Object.entries(props.errors)) {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: `Gagal: ${message}`,
+                            icon: "error"
+                        });
+                    }
+                },
+                onFinish: () => form.reset('password', 'password_confirmation'),
+            });
+        }
     });
+
 };
 </script>
 

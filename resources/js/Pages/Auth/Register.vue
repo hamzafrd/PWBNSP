@@ -134,16 +134,40 @@ const validateForm = () => {
 
 const submitForm = () => {
     validateForm()
-    console.log('test');
 
-    form.post(route('registrasi.mahasiswa-baru'), {
-        onSuccess: (response) => {
-            console.log(response);
-        },
-        onError: (err) => {
-            console.log(err);
-        },
+    Swal.fire({
+        title: "Apakah and yakin ingin mendaftar ?",
+        text: "Pastikan Data Anda Benar.",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya!",
+        cancelButtonText: "Cek lagi"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.post(route('registrasi.mahasiswa-baru'), {
+                onSuccess: (response) => {
+                    console.log(response);
+                    Swal.fire({
+                        title: "Berhasil !",
+                        text: "Data Anda Akan di verifikasi terlebih dahulu oleh admin.",
+                        icon: "success"
+                    });
+                },
+                onError: (err) => {
+                    Swal.fire({
+                        title: "Gagal !",
+                        text: "Terjadi Kesalahan. : " + err,
+                        icon: "error"
+                    });
+                },
+            });
+
+        }
     });
+
+
 };
 
 // Watch for changes in the selected province and fetch the corresponding cities

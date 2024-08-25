@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GeneratePdfController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
@@ -41,15 +42,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/pdf/{id}/generate', [GeneratePdfController::class, 'generatePdf'])->name('pdf.generate');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-    Route::get('/admin/dokumen/{id}/delete', [AdminController::class, 'deleteDokumen'])->name('admin.dokumen.delete');
+    Route::delete('/admin/dokumen/{id}/delete', [AdminController::class, 'deleteDokumen'])->name('admin.dokumen.delete');
     Route::get('/admin/dokumen/{id}/show', [AdminController::class, 'tinjauDokumen'])->name('admin.dokumen.show');
     Route::post('/admin/dokumen/{id}/edit', [AdminController::class, 'editDokumen'])->name('admin.dokumen.edit');
-    Route::post('/admin/dokumen/{id}/print', [AdminController::class, 'editDokumen'])->name('admin.dokumen.print');
 
     Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
     Route::get('/admin/users/{id}/show', [AdminController::class, 'show'])->name('admin.users.show');
