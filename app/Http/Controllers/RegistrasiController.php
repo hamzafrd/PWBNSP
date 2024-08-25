@@ -26,7 +26,7 @@ class RegistrasiController extends Controller
             'kewarganegaraan' => 'required|max:255',
             'negaraWNA' => 'nullable|max:255',
             'tanggalLahir' => 'required|date',
-            'nem' => 'required',
+            'nem' => 'required|numeric|min:0|max:5', // Adjust based on your needs
             'tempatLahir' => 'required|max:255',
             'jenisKelamin' => 'required|in:pria,wanita',
             'statusMenikah' => 'required|in:belum menikah,menikah,lainnya',

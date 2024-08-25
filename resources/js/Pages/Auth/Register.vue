@@ -156,11 +156,15 @@ const submitForm = () => {
                     });
                 },
                 onError: (err) => {
-                    Swal.fire({
-                        title: "Gagal !",
-                        text: "Terjadi Kesalahan. : " + err,
-                        icon: "error"
-                    });
+                    for (const [key, message] of Object.entries(err)) {
+                        // Use SweetAlert to display each error message
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: `Gagal: ${message}`,
+                            icon: "error"
+                        });
+                    }
+
                 },
             });
 
