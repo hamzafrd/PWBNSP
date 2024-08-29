@@ -1,7 +1,7 @@
 # PWBNS - Pengembang Web BNSP untuk sertifikat BNPS Pengembang Web
 <img width="955" alt="Halaman home" src="https://github.com/user-attachments/assets/86c011a8-b9a4-4dfc-8a6b-1328b7e8f384">
 Aplikasi Pendaftaran dan Seleksi Mahasiswa Baru Untuk Sertifikat Pengembang Web BNSP yang diadakan di Politeknik Negeri Jakarta
-
+Preview Aplikasi : https://pwbnsp.vercel.app
 ## **Fitur**
 
 - **Halaman Home**: Informasi dasar tentang aplikasi.
