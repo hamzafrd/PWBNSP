@@ -193,11 +193,6 @@ watch(selectedProvinsiLahir, (newProvinsiId) => {
     }
 });
 
-// watch(form, (newProvinsiId) => {
-//     console.log(newProvinsiId)
-// });
-
-
 onMounted(() => {
     fetchProvinces();
     fetchAgama();
@@ -207,13 +202,13 @@ onMounted(() => {
         selectedProvinsi.value = e.target.value;
     });
 
-    $(provinsiLahirSelect.value).select2().on('select2:select', (e) => {
-        selectedProvinsiLahir.value = e.target.value;
-    });
-
 
     $(kotaSelect.value).select2().on('select2:select', (e) => {
         form.regionKtpId = parseInt(e.target.value);
+    });
+
+    $(provinsiLahirSelect.value).select2().on('select2:select', (e) => {
+        selectedProvinsiLahir.value = e.target.value;
     });
 
     $(kotaLahirSelect.value).select2().on('select2:select', (e) => {
@@ -223,6 +218,19 @@ onMounted(() => {
 
     $('#kewarganegaraan').on('change', (e) => {
         form.kewarganegaraan = e.target.value
+    });
+
+    $('#pribumi').on('change', (e) => {
+        const value = e.target.value;
+        if (value == 'tidak') {
+            $(provinsiLahirSelect.value).select2().on('select2:select', (e) => {
+                selectedProvinsiLahir.value = e.target.value;
+            });
+
+            $(kotaLahirSelect.value).select2().on('select2:select', (e) => {
+                form.regionLahirId = parseInt(e.target.value);
+            });
+        }
     });
 });
 
