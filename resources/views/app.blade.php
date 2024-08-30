@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- Scripts -->
     @routes

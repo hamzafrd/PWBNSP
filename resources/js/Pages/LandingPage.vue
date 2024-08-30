@@ -25,7 +25,7 @@ onMounted(() => {
     contentTopPadding.value = bodyHeight * 0.5 - btnDaftarHeight
 
     const videoHeight = $('video').outerHeight(true);
-    console.log(videoHeight);
+    // console.log(videoHeight);
 
     contentTopVideoPadding.value = bodyHeight * 0.5 - videoHeight * 0.5;
 });
@@ -42,7 +42,7 @@ onMounted(() => {
             <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1 gap-3">
                     <a href="#" class="-m-1.5 p-1.5">
-                        <img class="h-12 w-auto" src="android-chrome-192x192.png" alt="" />
+                        <img class="h-12 w-auto" src="/android-chrome-192x192.png" alt="" />
                     </a>
                     <div class="flex flex-col justify-center">
                         <p class=" font-bold">Politeknik Negeri Jakarta</p>
