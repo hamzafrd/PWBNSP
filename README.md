@@ -7,6 +7,9 @@ Aplikasi Pendaftaran dan Seleksi Mahasiswa Baru Untuk Sertifikat Pengembang Web 
 - **Halaman Home**: Informasi dasar tentang aplikasi.
 - **Halaman Admin**: Mengelola data, Memverifikasi Dokumen, dan Mengelola Akun Pengguna.
 
+### **Versi Lainnya**
+- **React**: https://github.com/hamzafrd/pwbnsp-laravel-react
+
 ## **Beberapa Screenshot Aplikasi**
 ![verifkasi dokumen](https://github.com/user-attachments/assets/394c0502-6b3b-427e-8e4b-3a79cc5838ad)
 ![halamam peninjuan dokumen](https://github.com/user-attachments/assets/eb0b874d-849f-4cd7-9461-4aceabe5227a)
